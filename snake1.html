@@ -7,40 +7,45 @@
     <canvas id="canvas" width="1024" height= "1024"></canvas>
     <script>
 
-      var board = [
-        "###############",
-        "#             #",
-        "#         ##  #",
-        "#             #",
-        "#   #         #",
-        "#  ###        #",
-        "#  ####       #",
-        "#             #",
-        "#             #",
-        "###############"
-      ];
+      var game = {
+        board: [
+          "###############",
+          "#             #",
+          "#         ##  #",
+          "#             #",
+          "#   #         #",
+          "#  ###        #",
+          "#  ####       #",
+          "#             #",
+          "#             #",
+          "###############"
+        ]
+      }
+
 
       var graphics = {
-        drawBoard: funcation() {
-          var canvas = document.getElementById("canvas");
-          var ctx = canvas.getContext("2d");
-          var currentYOffset = 0;
-          var squareSize = 30;
+        canvas: document.getElementById("canvas"),
+        squareSize: 30,
 
-          board.forEach(function checkLine(row) {
+        drawBoard: function() {
+          var ctx = graphics.canvas.getContext("2d");
+          var currentYOffset = 0;
+          game.board.forEach(function checkLine(row) {
             var line = row.split('');
             var currentXOffset = 0;
           line.forEach(function checkCharacter(character){
             if(character === '#'){
               ctx.fillstyle = "black";
-              ctx.fillRect(currentXOffset, currentYOffset, squareSize, squareSize)
+              ctx.fillRect(currentXOffset, currentYOffset, graphics.squareSize, graphics.squareSize)
             }
-            currentXOffset += squareSize;
+            currentXOffset += graphics.squareSize;
           });
-          currentYOffset += squareSize;
+          currentYOffset += graphics.squareSize;
           });
         }
       }
+
+      graphics.drawBoard();
 
 
     </script>
