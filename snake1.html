@@ -20,23 +20,29 @@
         "###############"
       ];
 
-      var canvas = document.getElementById("canvas");
-      var ctx = canvas.getContext("2d");
-      var currentYOffset = 0;
-      var squareSize = 30;
+      var graphics = {
+        drawBoard: funcation() {
+          var canvas = document.getElementById("canvas");
+          var ctx = canvas.getContext("2d");
+          var currentYOffset = 0;
+          var squareSize = 30;
 
-      board.forEach(function checkLine(row) {
-         var line = row.split('');
-         var currentXOffset = 0;
-         line.forEach(function checkCharacter(character){
-           if(character === '#'){
-             ctx.fillstyle = "black";
-             ctx.fillRect(currentXOffset, currentYOffset, squareSize, squareSize)
-           }
-           currentXOffset += squareSize;
-         });
-         currentYOffset += squareSize;
-      });
+          board.forEach(function checkLine(row) {
+            var line = row.split('');
+            var currentXOffset = 0;
+          line.forEach(function checkCharacter(character){
+            if(character === '#'){
+              ctx.fillstyle = "black";
+              ctx.fillRect(currentXOffset, currentYOffset, squareSize, squareSize)
+            }
+            currentXOffset += squareSize;
+          });
+          currentYOffset += squareSize;
+          });
+        }
+      }
+
+
     </script>
   </body>
 </html>
