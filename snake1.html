@@ -8,6 +8,8 @@
     <script>
 
       var game = {
+        tickNumber: 0,
+        timer: null,
         board: [
           "###############",
           "#             #",
@@ -19,15 +21,24 @@
           "#             #",
           "#             #",
           "###############"
-        ]
-      }
+        ],
+        tick: function(){
+          game.tickNumber++;
+          graphics.drawGame();
+          game.timer = window.setTimeout("game.tick()", 500)
+        }
+      };
+
       var snake = {
         parts: [
           {x:4, y:2},
           {x:3, y:2},
           {x:2, y:2}
         ],
-        facing: "E"
+        facing: "E",
+        move: function() {
+
+        }
       };
 
 
@@ -42,7 +53,7 @@
             var currentXOffset = 0;
           line.forEach(function checkCharacter(character){
             if(character === '#'){
-              ctx.fillstyle = "black";
+              ctx.fillStyle = "black";
               ctx.fillRect(currentXOffset, currentYOffset, graphics.squareSize, graphics.squareSize)
             }
             currentXOffset += graphics.squareSize;
@@ -69,7 +80,14 @@
 
       };
 
-      graphics.drawGame();
+
+
+      var gameControl = {
+        startGame: function(){
+          game.tick();
+        }
+      };
+      gameControl.startGame();
 
 
 
