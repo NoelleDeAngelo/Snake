@@ -23,6 +23,7 @@
           "###############"
         ],
         tick: function(){
+          window.clearTimeout(game.timer);
           game.tickNumber++;;
           snake.move();
           graphics.drawGame();
@@ -99,8 +100,19 @@
 
 
       var gameControl = {
+        processInput: function(keyPressed){
+          var key = keyPressed.key.toLowerCase();
+          var targetDirection = snake.facing;
+          if(key === "w") {targetDirection = "N"};
+          if(key === "a") {targetDirection = "W"};
+          if(key === "s") {targetDirection = "S"};
+          if(key === "d") {targetDirection = "E"};
+          snake.facing = targetDirection;
+          game.tick();
+        },
 
         startGame: function(){
+          window.addEventListener("keypress", gameControl.processInput, false);
           game.tick();
         }
       };
