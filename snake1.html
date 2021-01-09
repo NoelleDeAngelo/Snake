@@ -27,7 +27,10 @@
 
         tick: function(){
           window.clearTimeout(game.timer);
-          game.tickNumber++;;
+          game.tickNumber++;
+          if(game.tickNumber % 15 === 0){
+            game.addRandomFruit();
+          }
           var result = snake.move();
           if(result === 'gameOver'){
             alert("Game Over!");
@@ -35,6 +38,15 @@
           }
           graphics.drawGame();
           game.timer = window.setTimeout("game.tick()", 500)
+        },
+
+        addRandomFruit: function() {
+          var randomY = Math.floor(Math.random() * game.board.length) + 0;
+          var randomX = Math.floor(Math.random() * game.board[randomY].length) + 0;
+          var randomLocation = {x:randomX, y:randomY};
+          if(game.isEmpty(randomLocation) && !game.isFruit(randomLocation)) {
+            game.fruit.push(randomLocation);
+          }
         },
 
         isEmpty: function(location){
