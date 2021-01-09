@@ -22,12 +22,18 @@
           "#             #",
           "###############"
         ],
+
         tick: function(){
           window.clearTimeout(game.timer);
           game.tickNumber++;;
           snake.move();
           graphics.drawGame();
           game.timer = window.setTimeout("game.tick()", 500)
+        },
+
+        isEmpty: function(location){
+          var contents = game.board[location.y][location.x];
+          return contents === " ";
         }
       };
 
@@ -37,6 +43,7 @@
           {x:3, y:2},
           {x:2, y:2}
         ],
+
         facing: "E",
 
         nextLocation: function(){
@@ -52,9 +59,12 @@
 
         move: function() {
           var location = snake.nextLocation();
-          snake.parts.unshift(location);
-          snake.parts.pop();
+          if(game.isEmpty(location)) {
+            snake.parts.unshift(location);
+            snake.parts.pop();
+          }
         }
+
       };
 
 
