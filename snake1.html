@@ -26,7 +26,11 @@
         tick: function(){
           window.clearTimeout(game.timer);
           game.tickNumber++;;
-          snake.move();
+          var result = snake.move();
+          if(result === 'gameOver'){
+            alert("Game Over!");
+            return;
+          }
           graphics.drawGame();
           game.timer = window.setTimeout("game.tick()", 500)
         },
@@ -34,6 +38,10 @@
         isEmpty: function(location){
           var contents = game.board[location.y][location.x];
           return contents === " ";
+        },
+
+        isWall: function(location) {
+          return game.board[location.y][location.x] === "#";
         }
       };
 
@@ -62,6 +70,9 @@
           if(game.isEmpty(location)) {
             snake.parts.unshift(location);
             snake.parts.pop();
+          }
+          if(game.isWall(location)){
+            return "gameOver";
           }
         }
 
