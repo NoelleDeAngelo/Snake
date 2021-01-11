@@ -151,12 +151,25 @@
         },
 
         drawSnake: function(ctx) {
-          snake.parts.forEach(function (part) {
+          for (var i = 0; i< snake.parts.length; i++) {
+            var part = snake.parts[i];
             var partXlocation = part.x * graphics.squareSize;
             var partYlocation = part.y * graphics.squareSize;
-            ctx.fillStyle = 'green';
-            ctx.fillRect(partXlocation, partYlocation, graphics.squareSize, graphics.squareSize);
-          });
+            if( i === 0 ){
+              graphics.drawSnakeHead(ctx,partXlocation, partYlocation);
+            }else{
+              ctx.fillStyle = 'green';
+              ctx.fillRect(partXlocation, partYlocation, graphics.squareSize, graphics.squareSize);
+            }
+          }
+        },
+
+        drawSnakeHead: function(ctx, partXlocation, partYlocation){
+              ctx.fillStyle = 'green';
+              ctx.fillRect(partXlocation, partYlocation, graphics.squareSize, graphics.squareSize);
+              ctx.fillStyle = 'black';
+              ctx.fillRect(partXlocation + 20, partYlocation + 5 , 5, 5);
+              ctx.fillRect(partXlocation + 20, partYlocation + 20, 5, 5);
         },
 
         drawGame: function(){
