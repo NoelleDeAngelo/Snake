@@ -168,8 +168,35 @@
               ctx.fillStyle = 'green';
               ctx.fillRect(partXlocation, partYlocation, graphics.squareSize, graphics.squareSize);
               ctx.fillStyle = 'black';
-              ctx.fillRect(partXlocation + 20, partYlocation + 5 , 5, 5);
-              ctx.fillRect(partXlocation + 20, partYlocation + 20, 5, 5);
+              if( snake.facing === "W") {
+                ctx.fillRect(partXlocation + graphics.squareSize *.8, partYlocation + graphics.squareSize *.15 , 5, 5);
+                ctx.fillRect(partXlocation + graphics.squareSize *.8, partYlocation + graphics.squareSize *.65, 5, 5);
+                ctx.fillStyle = 'red';
+                ctx.fillRect(partXlocation - 14, partYlocation + graphics.squareSize * .40, 14, 4);
+                ctx.fillRect(partXlocation - 16, partYlocation + graphics.squareSize * .40 +3 , 4, 3);
+                ctx.fillRect(partXlocation - 16, partYlocation + graphics.squareSize * .40 -3 , 4, 3);
+              }else  if( snake.facing === "E") {
+                ctx.fillRect(partXlocation + graphics.squareSize *.20, partYlocation + graphics.squareSize *.15 , 5, 5);
+                ctx.fillRect(partXlocation + graphics.squareSize *.2, partYlocation + graphics.squareSize *.65, 5, 5);
+                ctx.fillStyle = 'red';
+                ctx.fillRect(partXlocation + graphics.squareSize, partYlocation + graphics.squareSize * .40, 14, 4);
+                ctx.fillRect(partXlocation + graphics.squareSize + 12, partYlocation + graphics.squareSize * .40 +3 , 4, 3);
+                ctx.fillRect(partXlocation + graphics.squareSize +12, partYlocation + graphics.squareSize * .40 -3 , 4, 3);
+              }else  if( snake.facing === "N") {
+                ctx.fillRect(partXlocation + graphics.squareSize *.15, partYlocation + graphics.squareSize *.8 , 5, 5);
+                ctx.fillRect(partXlocation + graphics.squareSize *.65, partYlocation + graphics.squareSize *.8, 5, 5);
+                ctx.fillStyle = 'red';
+                ctx.fillRect(partXlocation + graphics.squareSize *.4, partYlocation -14, 4, 14);
+                ctx.fillRect(partXlocation + graphics.squareSize *.4 + 3, partYlocation -16 , 4, 3);
+                ctx.fillRect(partXlocation + graphics.squareSize *.4 - 3, partYlocation -16 , 4, 3);
+              }else  if( snake.facing === "S") {
+                ctx.fillRect(partXlocation + graphics.squareSize *.15, partYlocation + graphics.squareSize *.2 , 5, 5);
+                ctx.fillRect(partXlocation + graphics.squareSize *.65, partYlocation + graphics.squareSize *.2, 5, 5);
+                ctx.fillStyle = 'red';
+                ctx.fillRect(partXlocation + graphics.squareSize *.4, partYlocation + graphics.squareSize, 4, 14);
+                ctx.fillRect(partXlocation + graphics.squareSize *.4 + 3, partYlocation + graphics.squareSize + 12 , 4, 3);
+                ctx.fillRect(partXlocation + graphics.squareSize *.4 - 3, partYlocation + graphics.squareSize + 12 , 4, 3);
+              }
         },
 
         drawGame: function(){
